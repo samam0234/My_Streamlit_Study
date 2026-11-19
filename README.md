@@ -1,6 +1,6 @@
 # Streamlit 학습
 
-Python 스크립트 한 파일로 데이터 대시보드와 사내 도구 화면을 만드는 Streamlit 학습 기록이다. 기준 버전은 Streamlit 1.67.0이다. 예제 코드는 각 `study` 문서 안에 있고, 이 저장소는 그 문서를 담는다.
+Python 스크립트 한 파일로 데이터 대시보드와 사내 도구 화면을 만드는 Streamlit 학습 기록이다. 기준 버전은 Streamlit 1.67.0이다. 설명은 `study*.md`에 있고, 실행 코드는 `demo/`, `midpoint/`, `project/`에 있다. 이 환경은 Python 3.10이라 설치 버전은 Streamlit 1.65.0이다. Python 3.11 이상에서는 문서의 1.67도 설치할 수 있다.
 
 노션 페이지: [Streamlit](https://app.notion.com/p/40bd7dec5e2e8153a9aded435174ecbf)
 
@@ -32,11 +32,48 @@ Python 스크립트 한 파일로 데이터 대시보드와 사내 도구 화면
 | `study18.md` | 발췌 기반 AI, MCP, DocuForge 흐름 |
 | `studyFinal.md` | 심화까지 묶은 게시판 |
 
+## 실행
+
+저장소 루트에서 설치한다.
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+copy .env.example .env
+```
+
+기본값은 `POST_SOURCE=local`이다. 글과 계정은 `data/board.db`에 저장된다. 연습 계정은 `mina@example.com` / `password123`이다.
+
+```powershell
+streamlit run demo/study1/app.py
+streamlit run midpoint/app.py
+streamlit run project/app.py
+pytest -q
+```
+
+| 실습 | 명령 |
+| --- | --- |
+| study0 | `streamlit run demo/study0/app.py` |
+| study1 | `streamlit run demo/study1/app.py` |
+| study2 | `streamlit run demo/study2/app.py` |
+| study3 | `streamlit run demo/study3/app.py` |
+| study4 | `streamlit run demo/study4/app.py` |
+| study5 | `streamlit run demo/study5/app.py` |
+| study6~10, midpoint | `streamlit run midpoint/app.py` |
+| study11 | `streamlit run demo/study11/app.py` |
+| study12 | `streamlit run demo/study12/app.py` |
+| study13~17, final | `streamlit run project/app.py` |
+| study18 | `streamlit run demo/study18/app.py` |
+| API 연습 서버 | `python tools/mock_api.py` |
+
+API 모드로 바꾸려면 `.env`의 `POST_SOURCE=api`로 두고 mock 서버를 먼저 띄운다. 테스트는 `pytest -q`다.
+
 ## 읽는 순서
 
 `study0.md`에서 환경을 만든 뒤 번호 순서대로 읽는다. `studyMidpoint.md`는 `study10.md` 다음에, `studyFinal.md`는 `study18.md` 다음에 읽는다.
 
-문서의 코드를 실행할 때는 해당 단원의 파일을 빈 폴더에 복사하고, 그 단원의 `streamlit run` 명령을 사용한다. `.env`와 `.streamlit/secrets.toml`은 커밋하지 않는다.
+각 단원은 위 표의 명령으로 실행한다. `.env`와 `.streamlit/secrets.toml`은 커밋하지 않는다.
 
 ## 저장소
 
